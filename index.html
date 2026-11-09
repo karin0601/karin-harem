@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>臨帝闕宮鬥守則</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Serif+TC:wght@600;900&display=swap">
+<style>
+/* 版面：夜裡的宮闕。黑底燙金書法標題、宮燈紅蝶的開場圖、金色祥雲當章節裝飾；丹藥青、毒藥紫。刻意只做深色一種樣子 */
+@font-face { font-family: "HaoLong"; src: url("brush.woff2") format("woff2"); font-display: swap; }
+:root {
+  color-scheme: dark;
+  --night: #0e0809;      /* 夜 */
+  --night-2: #1a0f10;
+  --ink: #efe2cf;        /* 宣紙白 */
+  --muted: #a99282;
+  --gold: #d9b26a;       /* 燙金 */
+  --gold-hi: #f3d99a;
+  --gold-line: rgba(217, 178, 106, .35);
+  --red: #c8352c;        /* 宮燈紅 */
+  --red-deep: #7a1a17;
+  --card: rgba(30, 18, 19, .82);
+  --jade: #86c4ad; --jade-bg: rgba(134, 196, 173, .08);
+  --poison: #c99ad0; --poison-bg: rgba(201, 154, 208, .09);
+  --brush: "HaoLong", "Noto Serif TC", serif;
+  --display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  --body: "LXGW WenKai TC", "Noto Serif TC", "Kaiti TC", "DFKai-SB", serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+main { overflow-x: clip; }
+body {
+  background: var(--night); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.85;
+  padding-block: 0 72px; overflow-x: hidden;
+}
+/* 很淡的金色青海波 */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: url("img/wave.webp") 0 0 / 180px; opacity: .045;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--night); }
+a { color: var(--gold-hi); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 960px; margin: 0 auto; position: relative; }
+.gold-text {
+  background: linear-gradient(170deg, var(--gold-hi) 10%, var(--gold) 45%, #a77a32 70%, var(--gold-hi) 95%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- 開場 ---------- */
+.hero { position: relative; overflow: hidden; min-height: 620px; display: flex; align-items: stretch; }
+.hero .bg {
+  position: absolute; inset: 0 0 0 auto; width: min(62%, 720px);
+  background: url("img/hero.webp") center 30% / cover;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 38%), linear-gradient(to top, transparent 0%, #000 30%);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0%, #000 38%), linear-gradient(to top, transparent 0%, #000 30%); mask-composite: intersect;
+}
+.hero .moon { position: absolute; left: -40px; bottom: -30px; width: 520px; max-width: 80%; opacity: .55; pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 55%, transparent 100%); }
+.hero .wrap { width: 100%; display: flex; align-items: center; gap: 34px; padding-block: 64px 80px; }
+.hero .vt {
+  writing-mode: vertical-rl; font-family: var(--brush); font-size: clamp(96px, 15vw, 176px); line-height: .95; letter-spacing: -.02em;
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, .6));
+}
+.hero .side { min-width: 0; display: flex; flex-direction: column; gap: 14px; max-width: 420px; }
+.spaced { font-family: var(--display); font-weight: 600; letter-spacing: .6em; font-size: 13px; color: var(--gold); }
+.hero h1 { margin: 0; font-family: var(--brush); font-weight: 400; font-size: clamp(44px, 6.4vw, 68px); line-height: 1.1; color: var(--red); text-shadow: 0 0 24px rgba(200, 53, 44, .45); }
+.hero p { margin: 0; color: var(--muted); }
+.hero .line { width: 64px; height: 2px; background: var(--red); }
+.seal {
+  align-self: flex-start; margin-top: 8px; display: inline-flex; gap: 10px; align-items: center;
+  font-family: var(--display); font-weight: 900; letter-spacing: .15em; text-decoration: none; color: var(--ink);
+  background: linear-gradient(var(--red), var(--red-deep)); padding: 12px 26px; border-radius: 2px;
+  box-shadow: 0 0 0 1px var(--gold), 0 0 0 5px var(--night), 0 0 0 6px var(--gold-line), 0 8px 24px rgba(200, 53, 44, .35);
+  transition: transform .15s, box-shadow .15s;
+}
+.seal:hover { transform: translateY(-2px); }
+
+/* ---------- 目錄 ---------- */
+nav.toc {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: rgba(14, 8, 9, .92); backdrop-filter: blur(6px); border-block: 1px solid var(--gold-line);
+}
+nav.toc .wrap { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-block: 8px; }
+nav.toc .wrap::-webkit-scrollbar { display: none; }
+nav.toc a { flex: none; text-decoration: none; color: var(--muted); padding: 4px 12px; font-size: 15px; letter-spacing: .1em; border-bottom: 2px solid transparent; }
+nav.toc a:hover { color: var(--gold-hi); border-bottom-color: var(--red); }
+
+/* ---------- 章節 ---------- */
+section { position: relative; padding-top: 72px; scroll-margin-top: 50px; }
+.deco { position: absolute; pointer-events: none; z-index: -1; opacity: .5; }
+.head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+.head .no {
+  flex: none; width: 44px; height: 44px; display: grid; place-items: center; background: var(--red); color: var(--ink);
+  font-family: var(--display); font-weight: 900; font-size: 20px; border-radius: 3px; transform: rotate(-3deg);
+  box-shadow: inset 0 0 0 2px rgba(255, 230, 200, .25);
+}
+.head h2 { margin: 0; font-family: var(--brush); font-weight: 400; font-size: clamp(36px, 5vw, 48px); line-height: 1.1; }
+.head .en { font-family: var(--display); font-size: 12px; letter-spacing: .5em; color: var(--muted); margin-left: auto; white-space: nowrap; }
+h3 { margin: 0 0 8px; font-family: var(--display); font-weight: 900; font-size: 20px; color: var(--gold-hi); letter-spacing: .05em; }
+p { margin: 0 0 10px; }
+strong { color: var(--gold-hi); font-weight: 700; }
+.note { color: var(--muted); font-size: 15px; }
+
+/* 金框卡片：四個角有金色小折角 */
+.card {
+  position: relative; background: var(--card); border: 1px solid var(--gold-line); padding: 22px 24px; min-width: 0;
+  --c: var(--gold);
+  background-image:
+    linear-gradient(var(--c), var(--c)), linear-gradient(var(--c), var(--c)), linear-gradient(var(--c), var(--c)), linear-gradient(var(--c), var(--c)),
+    linear-gradient(var(--c), var(--c)), linear-gradient(var(--c), var(--c)), linear-gradient(var(--c), var(--c)), linear-gradient(var(--c), var(--c));
+  background-repeat: no-repeat;
+  background-size: 14px 2px, 2px 14px, 14px 2px, 2px 14px, 14px 2px, 2px 14px, 14px 2px, 2px 14px;
+  background-position: 4px 4px, 4px 4px, calc(100% - 4px) 4px, calc(100% - 4px) 4px, 4px calc(100% - 4px), 4px calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) calc(100% - 4px);
+}
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.stack { display: grid; gap: 16px; }
+
+/* 入宮三步 */
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
+.steps li { counter-increment: s; padding-top: 44px; }
+.steps li::before {
+  content: counter(s, cjk-decimal); position: absolute; top: 12px; left: 24px; font-family: var(--brush); font-size: 30px; line-height: 1; color: var(--red);
+}
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.links a { border: 1px solid var(--gold-line); padding: 6px 16px; text-decoration: none; font-size: 15px; color: var(--gold-hi); background: rgba(217, 178, 106, .06); }
+.links a:hover { border-color: var(--gold); background: rgba(217, 178, 106, .15); }
+
+/* 升位 */
+.ranks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.rank { display: flex; align-items: center; gap: 18px; }
+.rank .badge { font-family: var(--brush); font-size: 46px; line-height: 1; flex: none; }
+.rank .grade { font-family: var(--display); font-weight: 900; color: var(--gold-hi); letter-spacing: .1em; }
+.rank .who { font-size: 14px; color: var(--muted); }
+.ladder { width: 100%; border-collapse: collapse; }
+.ladder td { padding: 12px 4px; border-bottom: 1px dashed var(--gold-line); vertical-align: middle; }
+.ladder tr:last-child td { border-bottom: 0; }
+.ladder .up { width: 96px; text-align: right; font-family: var(--display); font-weight: 900; color: var(--red); font-size: 24px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ladder .up small { font-size: 13px; color: var(--muted); font-weight: 600; }
+
+/* 金手指 */
+.menu { list-style: none; padding: 0; margin: 0; }
+.menu li { display: flex; align-items: baseline; gap: 10px; padding: 11px 0; border-bottom: 1px dashed var(--gold-line); }
+.menu li:last-child { border-bottom: 0; }
+.menu .what { min-width: 0; }
+.menu .dots { flex: 1; border-bottom: 1px dotted var(--gold-line); transform: translateY(-5px); min-width: 16px; }
+.menu .cost { white-space: nowrap; font-family: var(--display); font-weight: 600; color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+.menu .cost b { font-size: 24px; font-weight: 900; color: var(--gold-hi); margin-right: 3px; }
+.tag { font-size: 12px; padding: 0 7px; margin-left: 8px; vertical-align: 2px; white-space: nowrap; border-radius: 2px; }
+.tag.jade { color: var(--jade); border: 1px solid var(--jade); }
+.tag.poison { color: var(--poison); border: 1px solid var(--poison); }
+
+/* 丹藥／毒藥 */
+.tabs { display: flex; gap: 10px; margin-bottom: 16px; }
+.tabs button {
+  font: inherit; font-family: var(--display); font-weight: 900; letter-spacing: .2em; cursor: pointer; padding: 8px 24px;
+  background: transparent; color: var(--muted); border: 1px solid var(--gold-line); border-radius: 2px;
+}
+.tabs button[aria-selected="true"].jade { color: var(--night); background: var(--jade); border-color: var(--jade); }
+.tabs button[aria-selected="true"].poison { color: var(--night); background: var(--poison); border-color: var(--poison); }
+.meds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.meds .card.jade { --c: var(--jade); background-color: var(--jade-bg); border-color: rgba(134, 196, 173, .4); }
+.meds .card.poison { --c: var(--poison); background-color: var(--poison-bg); border-color: rgba(201, 154, 208, .4); }
+.meds h3 { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.jade h3 { color: var(--jade); } .poison h3 { color: var(--poison); }
+.meds h3 small { font-family: var(--body); font-weight: 400; font-size: 13px; color: var(--muted); letter-spacing: 0; }
+.meds dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 7px 16px; }
+.meds dt { font-weight: 700; white-space: nowrap; }
+.meds dd { margin: 0; color: var(--muted); min-width: 0; }
+
+.ulist { margin: 0; padding-left: 1.2em; }
+.ulist li { margin-bottom: 6px; }
+.ulist li::marker { color: var(--red); }
+
+footer { margin-top: 88px; text-align: center; color: var(--muted); font-size: 14px; letter-spacing: .2em; position: relative; }
+footer .stamp { display: inline-block; font-family: var(--brush); font-size: 34px; line-height: 1; color: var(--red); border: 2px solid var(--red); padding: 8px 10px 6px; transform: rotate(-6deg); margin-bottom: 14px; }
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .hero { min-height: 0; }
+  .hero .bg { width: 100%; opacity: .55; -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 45%); mask-image: linear-gradient(to top, transparent 0%, #000 45%); }
+  .hero .wrap { flex-direction: column; align-items: flex-start; gap: 18px; padding-block: 48px 56px; }
+  .hero .vt { writing-mode: horizontal-tb; font-size: 84px; }
+  .hero .moon { width: 340px; }
+  .head .en { display: none; }
+  .steps, .grid2, .ranks, .meds { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .seal { transition: none; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="bg" role="img" aria-label="夜裡的宮燈和紅色蝴蝶"></div>
+  <img class="moon" src="img/moon-mountain.webp" alt="">
+  <div class="wrap gut">
+    <div class="vt gold-text" aria-hidden="true">臨帝闕</div>
+    <div class="side">
+      <div class="spaced">奉天承運　皇帝詔曰</div>
+      <h1>宮鬥守則</h1>
+      <div class="line"></div>
+      <p>小燐蝶們入宮之前，請先讀過這份守則。升位、宴會、懲處、養娃、金手指，後宮的規矩都寫在這裡。</p>
+      <a class="seal" href="https://forms.gle/Q3gec1mBy9dwffzJ6" target="_blank" rel="noopener">填寫入宮申請書 ↗</a>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <div class="wrap gut">
+    <a href="#join">入宮</a><a href="#rank">升妃位</a><a href="#feast">宴會與約會</a><a href="#punish">懲處與冷宮</a>
+    <a href="#kids">養娃</a><a href="#cheat">金手指</a><a href="#meds">丹藥與毒藥</a>
+    <a href="roster.html" style="color:var(--gold-hi)">後宮名冊 →</a>
+  </div>
+</nav>
+
+<main class="gut">
+<div class="wrap">
+  <section id="join">
+    <img class="deco" src="img/cloud-line.webp" alt="" style="right:-120px; bottom:-70px; width:300px">
+    <div class="head"><span class="no">壹</span><h2 class="gold-text">如何入宮</h2><span class="en">入　宮</span></div>
+    <ol class="steps">
+      <li class="card"><h3>填寫申請書</h3><p>還沒入宮的小燐蝶，先填好<a href="https://forms.gle/Q3gec1mBy9dwffzJ6" target="_blank" rel="noopener">入宮申請書</a>。</p></li>
+      <li class="card"><h3>跟主播說一聲</h3><p>直播中途填完的，請在聊天室告訴花燐「我填好了」，不然花燐不會知道哦～</p></li>
+      <li class="card"><h3>選孩子立繪</h3><p>在直播間告訴花燐你要的孩子立繪編號，例如「皇子庫 12 號」。</p></li>
+    </ol>
+    <div class="card" style="margin-top:16px">
+      <h3>孩子立繪庫</h3>
+      <div class="links">
+        <a href="https://avg.163.com/topic/detail/3595359" target="_blank" rel="noopener">皇子立繪庫 ↗</a>
+        <a href="https://avg.163.com/topic/detail/3595379" target="_blank" rel="noopener">公主立繪庫（1～170 號）↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="rank">
+    <img class="deco" src="img/cloud-gold.webp" alt="" style="left:-150px; bottom:-70px; width:260px; opacity:.35">
+    <div class="head"><span class="no">貳</span><h2 class="gold-text">升妃位規則</h2><span class="en">晉　位</span></div>
+    <div class="ranks">
+      <div class="card rank"><span class="badge gold-text">更衣</span><div><div class="grade">從八品</div><div class="who">剛入宮的妃子都從這裡開始</div></div></div>
+      <div class="card rank"><span class="badge gold-text">采女</span><div><div class="grade">正八品</div><div class="who">有「小燐蝶」會員的，一入宮就是采女</div></div></div>
+    </div>
+    <div class="card">
+      <table class="ladder">
+        <tbody>
+          <tr><td>每次來直播間打招呼報到</td><td class="up">+1 <small>級</small></td></tr>
+          <tr><td>懷孕</td><td class="up">+2 <small>級</small></td></tr>
+          <tr><td>孩子平安生下來</td><td class="up">+2 <small>級</small></td></tr>
+          <tr><td>宴會拔得頭籌</td><td class="up">+1 <small>級</small></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:14px">升不上去的時候：改成送 5 個禮物（增加寵愛），寵愛夠了才能再升妃位。</p>
+  </section>
+
+  <section id="feast">
+    <div class="head"><span class="no">參</span><h2 class="gold-text">宴會與約會</h2><span class="en">宴　飲</span></div>
+    <div class="grid2">
+      <div class="card"><h3>花朝宴</h3><p>必須<strong>人在直播間</strong>才會納入評選。獲獎的妃子升 1 級妃位。</p></div>
+      <div class="card"><h3>七夕約會</h3><p>必須<strong>人在直播間</strong>，用轉盤決定約會人選。被選中的妃子升 1 級妃位。</p></div>
+    </div>
+  </section>
+
+  <section id="punish">
+    <img class="deco" src="img/cloud-red.webp" alt="" style="right:-140px; bottom:-70px; width:280px; opacity:.4">
+    <div class="head"><span class="no">肆</span><h2 class="gold-text">懲處與冷宮</h2><span class="en">刑　罰</span></div>
+    <p>暗害其他妃子被抓到的話⋯</p>
+    <div class="grid2">
+      <div class="card"><h3>受害者還活著</h3><p>懲罰方式由被暗害的妃子決定，但<strong>不可以賜死</strong>。</p></div>
+      <div class="card"><h3>受害者死了</h3><p>受害者可以選擇：<strong>賜死</strong>加害者，或把她<strong>打入冷宮</strong>。</p></div>
+      <div class="card">
+        <h3>進了冷宮之後</h3>
+        <ul class="ulist">
+          <li>有其他妃子求情，就有機會離開冷宮；出來以後從<strong>更衣</strong>重新開始。</li>
+          <li>加害者的孩子交給其他妃子照顧。沒有成功離開冷宮的話，孩子就歸那位妃子。</li>
+          <li>也可以選擇放棄妃子身分：<strong>流放</strong>，或去<strong>花街當青樓女子</strong>。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>死亡的妃子</h3>
+        <p>可以再填一次入宮申請書重新入宮。身世背景會多一條：<strong>是哪一位妃子的轉世</strong>，以及<strong>前世是怎麼死的</strong>。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="kids">
+    <div class="head"><span class="no">伍</span><h2 class="gold-text">養娃攻略</h2><span class="en">皇　嗣</span></div>
+    <div class="card">
+      <h3>目標：太子與長公主</h3>
+      <ul class="ulist">
+        <li>孩子的名字可以自己取。</li>
+        <li><strong>綜合評價最高</strong>的皇子當太子、公主當長公主。</li>
+        <li>綜合評價看兩樣：<strong>寵愛</strong>和孩子的<strong>基本數值</strong>。</li>
+        <li>寵愛跟母妃受不受寵有關，送孩子禮物可以提升寵愛。</li>
+        <li>基本數值可以餵丹藥提升（見下方丹藥）。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="cheat">
+    <img class="deco" src="img/cloud-gold2.webp" alt="" style="right:-160px; bottom:-70px; width:280px; opacity:.3">
+    <div class="head"><span class="no">陸</span><h2 class="gold-text">金手指</h2><span class="en">恩　典</span></div>
+    <p class="note">贈送會籍就能開啟。數字是要贈送的會籍數量。</p>
+    <div class="card">
+      <ul class="menu">
+        <li><span class="what">陛下到你宮裡陪伴一整天</span><span class="dots"></span><span class="cost"><b>1</b>個會籍</span></li>
+        <li><span class="what">陛下陪伴孩子一整天</span><span class="dots"></span><span class="cost"><b>1</b>個會籍</span></li>
+        <li><span class="what">送禮物 ×5（給妃子或孩子，增加寵愛）</span><span class="dots"></span><span class="cost"><b>1</b>個會籍</span></li>
+        <li><span class="what">死後原地復活／強行出冷宮</span><span class="dots"></span><span class="cost"><b>3</b>個會籍</span></li>
+        <li><span class="what">使用低階丹藥<span class="tag jade">丹藥</span></span><span class="dots"></span><span class="cost"><b>3</b>個會籍</span></li>
+        <li><span class="what">妃子獲得封號（可以自訂，會加好感和寵愛）</span><span class="dots"></span><span class="cost"><b>5</b>個會籍</span></li>
+        <li><span class="what">使用高階丹藥<span class="tag jade">丹藥</span></span><span class="dots"></span><span class="cost"><b>5</b>個會籍</span></li>
+        <li><span class="what">對其他妃子或皇子使用低階毒藥<span class="tag poison">毒藥</span></span><span class="dots"></span><span class="cost"><b>7</b>個會籍</span></li>
+        <li><span class="what">對其他妃子或皇子使用高階毒藥<span class="tag poison">毒藥</span></span><span class="dots"></span><span class="cost"><b>14</b>個會籍</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="meds">
+    <div class="head"><span class="no">柒</span><h2 class="gold-text">丹藥與毒藥</h2><span class="en">藥　房</span></div>
+    <div class="tabs" role="tablist">
+      <button class="jade" role="tab" id="tab-jade" aria-selected="true" aria-controls="pane-jade">丹藥</button>
+      <button class="poison" role="tab" id="tab-poison" aria-selected="false" aria-controls="pane-poison">毒藥</button>
+    </div>
+    <div class="meds" id="pane-jade" role="tabpanel" aria-labelledby="tab-jade">
+      <div class="card jade">
+        <h3>低階丹藥 <small>3 個會籍・也可以給自己的寶寶用</small></h3>
+        <dl>
+          <dt>保胎丸</dt><dd>這次懷孕不會難產</dd>
+          <dt>駐顏膏</dt><dd>絕色容貌 +20</dd>
+          <dt>健體丸</dt><dd>武藝 +20</dd>
+          <dt>益智丸</dt><dd>智謀 +20</dd>
+          <dt>小還丹</dt><dd>健康 +10</dd>
+        </dl>
+      </div>
+      <div class="card jade">
+        <h3>高階丹藥 <small>5 個會籍・也可以給自己的寶寶用</small></h3>
+        <dl>
+          <dt>孕子丹</dt><dd>服用後臨幸必定懷孕</dd>
+          <dt>龍鳳丹</dt><dd>懷孕的妃子必定生下龍鳳胎</dd>
+          <dt>多子丹</dt><dd>懷孕的妃子必定生下多胞胎</dd>
+          <dt>花容膏</dt><dd>容貌 +100</dd>
+          <dt>龍虎湯</dt><dd>武藝 +100</dd>
+          <dt>慧心湯</dt><dd>智謀 +100</dd>
+          <dt>清心丹</dt><dd>黑化值 −100</dd>
+          <dt>毀心丹</dt><dd>黑化值 +100</dd>
+          <dt>禍心散</dt><dd>野心 +100</dd>
+          <dt>移性丹</dt><dd>更改角色性格</dd>
+          <dt>大還丹</dt><dd>健康回滿</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="meds" id="pane-poison" role="tabpanel" aria-labelledby="tab-poison" hidden>
+      <div class="card poison">
+        <h3>低階毒藥 <small>7 個會籍・也可以給別人的寶寶用</small></h3>
+        <dl>
+          <dt>寒霜毒</dt><dd>健康 −20（30%）</dd>
+          <dt>芳燼丸</dt><dd>容貌 −50</dd>
+          <dt>消智丹</dt><dd>智謀 −100</dd>
+          <dt>散功丹</dt><dd>武藝 −100</dd>
+          <dt>損藝丹</dt><dd>才藝 −100</dd>
+        </dl>
+      </div>
+      <div class="card poison">
+        <h3>高階毒藥 <small>14 個會籍・也可以給別人的寶寶用</small></h3>
+        <dl>
+          <dt>鶴頂紅</dt><dd>健康 −50（30%）</dd>
+          <dt>鴆毒</dt><dd>健康清空（30%）</dd>
+          <dt>芳燼湯</dt><dd>容貌 −500</dd>
+          <dt>紅花湯</dt><dd>流產（孕值歸 0）</dd>
+          <dt>絕子湯</dt><dd>絕子（孕值永遠是 0）</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="stamp">花燐御批</div>
+    <div>願小燐蝶們在後宮步步高升</div>
+  </footer>
+</div>
+</main>
+
+<script>
+  const tabs = document.querySelectorAll('.tabs button');
+  tabs.forEach(b => b.addEventListener('click', () => {
+    tabs.forEach(t => {
+      const on = t === b;
+      t.setAttribute('aria-selected', on);
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }));
+</script>
+
+</body>
+</html>
